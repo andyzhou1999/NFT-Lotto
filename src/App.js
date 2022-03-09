@@ -1,5 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
+import "./header.css";
+import "./all.css";
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -7,106 +9,49 @@ import ReactDOM from "react-dom";
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-  }
-
-  renderNavigation(props) {
-    return <Navigation {...props}></Navigation>;
+    this.state = {
+      isSignedIn: false,
+    };
   }
 
   render() {
     return (
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-            NFT Lotto
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item dropdown">
+      <header>
+        <div class="header-container">
+          <div class="container-content">
+            <div class="left-side align-middle">
+              <b id="lrg">
+                <a href="/">NFT Lotto</a>
+              </b>
+              <b>
+                <a href="/lootbox">Lootboxes</a>
+              </b>
+              <b>
+                <a href="/build-own-box">Build Your Own Box</a>
+              </b>
+              <b>
+                <a href="/aboutus">About US</a>
+              </b>
+              <b>
                 <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdownMenuLink"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
+                  id="logout"
+                  href={this.state.isSignedIn ? "/signout" : "/signin"}
                 >
-                  Lootboxes
+                  {this.state.isSignedIn ? "Sign Out" : "Sign In"}
                 </a>
-                <ul
-                  class="dropdown-menu"
-                  aria-labelledby="navbarDropdownMenuLink"
-                  id="dropdown-lootbox"
-                >
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Featured
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      Classic
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#">
-                      All-In
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Features
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  Pricing
-                </a>
-              </li>
-            </ul>
+              </b>
+            </div>
+            <div class="right-side align-middle"></div>
           </div>
         </div>
-      </nav>
-    );
-  }
-}
-
-//navbar entries
-class Navigation extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <a class="navItem" href={this.props.url}>
-        {this.props.text}
-      </a>
+      </header>
     );
   }
 }
 
 function App() {
   return (
-    <div className="App">
+    <div class="App">
       <NavBar></NavBar>
     </div>
   );
